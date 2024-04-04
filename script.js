@@ -256,8 +256,17 @@ define(['jquery'], function ($) {
 						if (pipeline_id && status_id && lead_id) {
 							let leadData = getCurrentLeadAndCopy(lead_id)
 							copyLead(pipeline_id, status_id, leadData);
+						} 
+						if (success >= total_success) {
+							$('.copy-lead__info')
+								.removeClass('copy-lead__info_load copy-lead__info_error')
+								.addClass('copy-lead__info_success')
+								.text('Готово!');
 						} else {
-							alert('Пожалуйста, выберите воронку и этап сделки.');
+							$('.copy-lead__info')
+								.removeClass('copy-lead__info_load copy-lead__info_success')
+								.addClass('copy-lead__info_error')
+								.text('Ошибка');
 						}
 					}
 				});
